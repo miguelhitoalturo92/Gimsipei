@@ -1,8 +1,16 @@
 from flask import Flask, render_template, redirect, request
+from flask_mysqldb import MySQL
 
 app = Flask(__name__, static_folder='src/static', template_folder='src/templates')
 
 
+# Conexión
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_DB'] = 'flask_bd'
+conexion = MySQL(app)
 
 # Manejo de errores
 @app.errorhandler(404)
