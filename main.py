@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__, static_folder='src/static', template_folder='src/templates')
 
@@ -17,18 +17,20 @@ def index():
     return redirect('/login', 302)
 
 
-@app.route('/login')
+
+@app.route('/login', methods=['GET','POST'])
 def login():
-    return render_template('login.html')
-
-
-@app.route('/login_form')
-def login_form():
-    
-    return render_template('login.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print(username)
+        print(password)
+        return render_template('login.html')
+    else:    
+        return render_template('login.html')
 
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8000)
