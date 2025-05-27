@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect, request, jsonify
-from flask_mysqldb import MySQL
+from flask import Flask, render_template, redirect
+from flask_mysqldb import MySQL, MySQLdb
 
-app = Flask(__name__, static_folder='src/static', template_folder='src/templates')
+app = Flask(__name__, template_folder='src/templates')
 
 
 # Conexión
@@ -10,11 +10,10 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'flask_jwt'
-conexion = MySQL(app)
-if conexion:
-    print("Conectado")
-else:
-    print("No se encontro la bd")
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+mysql = MySQL(app)
+
+
 
 # Manejo de errores
 @app.errorhandler(404)
@@ -32,28 +31,8 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        # print(username)
-        # print(password)
-        try:
-            
-            cursor = conexion.connection.cursor()
-            
-            sql=("SELECT * FROM usuarios where correo= %s and password = %s",(username,password))
-            cursor.execute(sql)
-            data = cursor.fetchone()
-            if data:
-               return render_template('admin/dashboard.html')
-            data.close() 
-        except Exception as e:
-            return jsonify({"message":"error"})       
-    else:    
-        return render_template('login.html')
-
-
-
+    return '<h1>Login</h1>'
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.secret_key="leonardo"
+    app.run(debug=False)
