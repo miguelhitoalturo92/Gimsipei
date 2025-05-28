@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect
 from flask_mysqldb import MySQL, MySQLdb
 
-app = Flask(__name__, template_folder='src/templates')
+app = Flask(__name__, template_folder='src/templates/', static_folder='src/static/')
 
 
 # Conexión
@@ -31,7 +31,7 @@ def index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    return '<h1>Login</h1>'
+     return render_template('auth/login.html')
 
 if __name__ == '__main__':
     app.secret_key="leonardo"
