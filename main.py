@@ -1,20 +1,17 @@
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
-from src.database.database import engine, Base
 import os
+
+from src.routes import register_blueprints
+from src.database.database import engine, Base
 
 # Load environment variables
 load_dotenv()
 
 # Initialize Flask app
-app = Flask(__name__, 
-    template_folder='src/templates',
-    static_folder='src/static'
-)
+app = Flask(__name__, template_folder="src/templates", static_folder="src/static")
 
 # Configure app
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -46,14 +43,16 @@ Base.metadata.create_all(bind=engine)
 
 def init_routes():
     # Import routes
-    from src.routes import auth, documents, exercises, assignments, admin
+    # from src.routes import auth, documents, exercises, assignments, admin
 
-    # Register blueprints
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(documents.bp)
-    app.register_blueprint(exercises.bp)
-    app.register_blueprint(assignments.bp)
-    app.register_blueprint(admin.bp)
+    # # Register blueprints
+    # app.register_blueprint(auth.bp)
+    # app.register_blueprint(documents.bp)
+    # app.register_blueprint(exercises.bp)
+    # app.register_blueprint(assignments.bp)
+    # app.register_blueprint(admin.bp)
+    register_blueprints(app)
+
 
 # Error handlers
 @app.errorhandler(404)
