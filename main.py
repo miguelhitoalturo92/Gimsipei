@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # JWT Configuration
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config["JWT_TOKEN_LOCATION"] = ["headers"]
 app.config['JWT_COOKIE_SECURE'] = False  # Set to True in production
 app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
@@ -42,15 +42,6 @@ from src.models.submission import Submission
 Base.metadata.create_all(bind=engine)
 
 def init_routes():
-    # Import routes
-    # from src.routes import auth, documents, exercises, assignments, admin
-
-    # # Register blueprints
-    # app.register_blueprint(auth.bp)
-    # app.register_blueprint(documents.bp)
-    # app.register_blueprint(exercises.bp)
-    # app.register_blueprint(assignments.bp)
-    # app.register_blueprint(admin.bp)
     register_blueprints(app)
 
 
