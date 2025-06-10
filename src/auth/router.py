@@ -1,23 +1,18 @@
 from flask import Blueprint, request
 from .controllers import (
-    register_controller,
-    login_controller,
+    login_user_controller,
     get_current_user_controller,
+    logout_user_controller,
+    create_first_admin_controller,
     forgot_password_controller,
-    logout_controller,
 )
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-@auth_bp.route("/register", methods=["GET", "POST"])
-def register():
-    return register_controller(request)
-
-
-@auth_bp.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/login", methods=["POST"])
 def login():
-    return login_controller(request)
+    return login_user_controller(request)
 
 
 @auth_bp.route("/me", methods=["GET"])
@@ -30,6 +25,11 @@ def forgot_password():
     return forgot_password_controller(request)
 
 
-@auth_bp.route("/logout")
+@auth_bp.route("/logout", methods=["POST"])
 def logout():
-    return logout_controller(request)
+    return logout_user_controller(request)
+
+
+@auth_bp.route("/first-admin", methods=["POST"])
+def create_first_admin():
+    return create_first_admin_controller(request)

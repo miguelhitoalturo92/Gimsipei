@@ -1,61 +1,53 @@
-from flask import (
-    render_template,
-    redirect,
-    url_for,
-    flash
-)
+from flask import render_template, Request, jsonify, Response
+from flask_jwt_extended import jwt_required
 from .service import (
-    register_user_service,
     login_user_service,
     get_current_user_service,
     logout_user_service,
+    create_first_admin_service,
 )
-from .validation import RegisterSchema, LoginSchema
+from .validation import (
+    LoginSchema,
+    CreateFirstAdminSchema,
+)
 from pydantic import ValidationError
-from flask import Request, Response
 
 
-def register_controller(request: Request) -> Response | tuple[dict, int]:
-    if request.method == "GET":
-        return render_template("auth/register.html")
-    if request.is_json:
-        data = request.get_json()
-    else:
-        data = request.form.to_dict()
+def login_user_controller(request: Request) -> Response | tuple[dict, int]:
     try:
-        validated = RegisterSchema(**data)
+        validated = LoginSchema(**request.get_json())
+        return login_user_service(validated, request)
     except ValidationError as e:
-        if request.is_json:
-            return {"error": e.errors()}, 400
-        flash("Datos inválidos: " + str(e), "danger")
-        return redirect(url_for("auth.register"))
-    return register_user_service(validated, request)
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
-def login_controller(request: Request) -> Response | tuple[dict, int]:
-    if request.method == "GET":
-        return render_template("auth/login.html")
-    if request.is_json:
-        data = request.get_json()
-    else:
-        data = request.form.to_dict()
+@jwt_required()
+def get_current_user_controller(request: Request) -> Response | tuple[dict, int]:
     try:
-        validated = LoginSchema(**data)
-    except ValidationError as e:
-        if request.is_json:
-            return {"error": e.errors()}, 400
-        flash("Datos inválidos: " + str(e), "danger")
-        return redirect(url_for("auth.login"))
-    return login_user_service(validated, request)
-
-
-def get_current_user_controller(request: Request) -> tuple[dict, int]:
-    return get_current_user_service(request)
+        return get_current_user_service(request)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 def forgot_password_controller(request: Request) -> Response:
     return render_template("auth/forgot_password.html")
 
 
-def logout_controller(request: Request) -> Response:
-    return logout_user_service(request)
+@jwt_required()
+def logout_user_controller(request: Request) -> Response | tuple[dict, int]:
+    try:
+        return logout_user_service(request)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+def create_first_admin_controller(request: Request) -> Response | tuple[dict, int]:
+    try:
+        validated = CreateFirstAdminSchema(**request.get_json())
+        return create_first_admin_service(validated, request)
+    except ValidationError as e:
+        return jsonify({"error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

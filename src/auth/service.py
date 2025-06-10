@@ -10,47 +10,15 @@ from flask_jwt_extended import (
     create_access_token,
     get_jwt_identity,
     set_access_cookies,
-    unset_jwt_cookies,
+    unset_jwt_cookies
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Request, Response
-from .validation import RegisterSchema, LoginSchema
-
-
-def register_user_service(
-    validated: RegisterSchema, request: Request
-) -> Response | tuple[dict, int]:
-    db = SessionLocal()
-    try:
-        if db.query(User).filter_by(email=validated.email).first():
-            message = "El correo electrónico ya está registrado"
-            if request.is_json:
-                return {"error": message}, 400
-            flash(message, "danger")
-            return redirect(url_for("auth.register"))
-        if db.query(User).filter_by(username=validated.username).first():
-            message = "El nombre de usuario ya está en uso"
-            if request.is_json:
-                return {"error": message}, 400
-            flash(message, "danger")
-            return redirect(url_for("auth.register"))
-        user = User(
-            email=validated.email,
-            username=validated.username,
-            hashed_password=generate_password_hash(validated.password),
-            full_name=validated.full_name,
-            role=UserRole[validated.role],
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
-    finally:
-        db.close()
-    message = "Usuario registrado exitosamente"
-    if request.is_json:
-        return {"message": message}, 201
-    flash(message, "success")
-    return redirect(url_for("auth.login"))
+from .validation import (
+    LoginSchema,
+    CreateFirstAdminSchema,
+)
+import os
 
 
 def login_user_service(
@@ -127,3 +95,37 @@ def logout_user_service(request: Request) -> Response:
     unset_jwt_cookies(response)
     flash("Has cerrado sesión exitosamente.", "success")
     return response
+
+
+def create_first_admin_service(
+    validated: CreateFirstAdminSchema, request: Request
+) -> tuple[dict, int]:
+    """Crea el primer administrador del sistema usando una clave secreta"""
+    if validated.secret_key != os.getenv("FIRST_ADMIN_SECRET_KEY"):
+        return {"error": "Clave secreta inválida"}, 401
+
+    db = SessionLocal()
+    try:
+        # Verificar si ya existe un admin
+        if db.query(User).filter(User.role == UserRole.ADMIN).first():
+            return {"error": "Ya existe un administrador en el sistema"}, 400
+
+        # Verificar si el email o username ya están en uso
+        if db.query(User).filter_by(email=validated.email).first():
+            return {"error": "El correo electrónico ya está registrado"}, 400
+        if db.query(User).filter_by(username=validated.username).first():
+            return {"error": "El nombre de usuario ya está en uso"}, 400
+
+        user = User(
+            email=validated.email,
+            username=validated.username,
+            hashed_password=generate_password_hash(validated.password),
+            full_name=validated.full_name,
+            role=UserRole.ADMIN,
+        )
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        return {"message": "Administrador creado exitosamente"}, 201
+    finally:
+        db.close()
