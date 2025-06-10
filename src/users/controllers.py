@@ -1,4 +1,5 @@
-from flask import Request, Response, render_template, redirect, url_for, flash, jsonify
+from flask import Request, Response
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from typing import Tuple, Optional
 from .validation import UserCreateSchema, UserUpdateSchema, UserResponseSchema
 from .service import (
@@ -10,8 +11,13 @@ from .service import (
 )
 from pydantic import ValidationError
 from src.utils.api_response import ApiResponse
+from src.models.user import User, UserRole
+from src.database.database import SessionLocal
+from src.utils.decorator_role_required import role_required
 
 
+@jwt_required()
+@role_required(UserRole.ADMIN, UserRole.TEACHER, UserRole.STUDENT)
 def get_users_controller(request: Request) -> Response | Tuple[list, int]:
     try:
         role = request.args.get("role")
@@ -34,10 +40,20 @@ def get_users_controller(request: Request) -> Response | Tuple[list, int]:
         )
 
 
+@jwt_required()
 def get_user_controller(
     user_id: int, request: Request
 ) -> Response | Tuple[Optional[UserResponseSchema], int]:
     try:
+        current_user_id = get_jwt_identity()
+        db = SessionLocal()
+        current_user = db.query(User).get(current_user_id)
+        db.close()
+        # Solo admin o el propio usuario pueden ver el perfil
+        if not current_user or (
+            current_user.role != UserRole.ADMIN and current_user.id != user_id
+        ):
+            return ApiResponse.error(message="No autorizado", status_code=403)
         result, status_code = get_user_service(user_id, request)
 
         if status_code == 404:
@@ -50,6 +66,8 @@ def get_user_controller(
         )
 
 
+@jwt_required()
+@role_required(UserRole.ADMIN)
 def create_user_controller(
     request: Request,
 ) -> Response | Tuple[Optional[UserResponseSchema], int]:
@@ -91,6 +109,8 @@ def create_user_controller(
         )
 
 
+@jwt_required()
+@role_required(UserRole.ADMIN, UserRole.TEACHER)
 def update_user_controller(
     user_id: int, request: Request
 ) -> Response | Tuple[Optional[UserResponseSchema], int]:
@@ -128,6 +148,8 @@ def update_user_controller(
         )
 
 
+@jwt_required()
+@role_required(UserRole.ADMIN)
 def delete_user_controller(
     user_id: int, request: Request
 ) -> Response | Tuple[Optional[dict], int]:
