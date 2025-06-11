@@ -1,5 +1,5 @@
 from flask import Request, Response
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
 from typing import Tuple, Optional
 from .validation import UserCreateSchema, UserUpdateSchema, UserResponseSchema
 from .service import (
@@ -13,6 +13,7 @@ from pydantic import ValidationError
 from src.utils.api_response import ApiResponse
 from src.models.user import User, UserRole
 from src.database.database import SessionLocal
+from src.utils.normalize_role_field import normalize_role_field
 from src.utils.decorator_role_required import role_required
 
 
@@ -68,6 +69,7 @@ def get_user_controller(
 
 @jwt_required()
 @role_required(UserRole.ADMIN)
+@normalize_role_field
 def create_user_controller(
     request: Request,
 ) -> Response | Tuple[Optional[UserResponseSchema], int]:
@@ -76,9 +78,6 @@ def create_user_controller(
             data = request.get_json()
         else:
             data = request.form.to_dict()
-            if "role" in data:
-                data["role"] = data["role"].upper()
-
         validated = UserCreateSchema(**data)
         result, status_code = create_user_service(validated, request)
 
@@ -111,6 +110,7 @@ def create_user_controller(
 
 @jwt_required()
 @role_required(UserRole.ADMIN, UserRole.TEACHER)
+@normalize_role_field
 def update_user_controller(
     user_id: int, request: Request
 ) -> Response | Tuple[Optional[UserResponseSchema], int]:
@@ -119,9 +119,6 @@ def update_user_controller(
             data = request.get_json()
         else:
             data = request.form.to_dict()
-            if "role" in data:
-                data["role"] = data["role"].upper()
-
         validated = UserUpdateSchema(**data)
         result, status_code = update_user_service(user_id, validated, request)
 
