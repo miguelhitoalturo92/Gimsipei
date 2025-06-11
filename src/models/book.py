@@ -10,3 +10,4 @@ class Book(Base):
     description = Column(Text, default="")
     file_path = Column(String(512), nullable=False)
     cover_image = Column(String(512), nullable=True)
+    target_audience = Column(String(20), nullable=False)
