@@ -71,7 +71,10 @@ def register() -> Union[str, tuple[Dict[str, Any], int]]:
     flash(message, 'success')
     return redirect(url_for('auth.login'))
 
-@bp.route('/login', methods=['GET', 'POST'])
+
+
+
+@bp.route('login', methods=['GET', 'POST'])
 def login() -> Union[str, tuple[Dict[str, Any], int]]:
     """Login user
     
@@ -120,6 +123,11 @@ def login() -> Union[str, tuple[Dict[str, Any], int]]:
         return response
     finally:
         db.close()
+
+@bp.route('user', methods=['GET', 'POST'])
+def user():
+    return render_template('admin/user.html') 
+
 
 @bp.route('/me', methods=['GET'])
 @jwt_required()

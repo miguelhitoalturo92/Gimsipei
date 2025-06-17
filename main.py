@@ -69,6 +69,8 @@ def internal_error(error):
 def health_check():
     return jsonify({'status': 'healthy'}), 200
 
+
+
 # Initialize routes
 init_routes()
 
