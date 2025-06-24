@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 from flask_mysqldb import MySQL, MySQLdb
 
 app = Flask(__name__, template_folder='src/templates/', static_folder='src/static/')
@@ -23,15 +23,22 @@ def page_not_found(e):
 
 
 # Rutas
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return redirect('/user', 302)
-
+    return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET','POST'])
 def login():
      return render_template('auth/login.html')
+ 
+ 
+@app.route('/user', methods=['GET','POST'])
+def user():
+    return render_template('auth/user.html')
+
+
+
 
 if __name__ == '__main__':
     app.secret_key="leonardo"
