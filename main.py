@@ -25,7 +25,7 @@ def page_not_found(e):
 # Rutas
 @app.route('/')
 def index():
-    return redirect('/login', 302)
+    return redirect('/user', 302)
 
 
 
