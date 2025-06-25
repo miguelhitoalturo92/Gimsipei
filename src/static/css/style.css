@@ -14,6 +14,7 @@
     --light-color: #f8f9fa;
     --dark-color: #343a40;
     --input-color: #00c2e7;
+    --input-color-hover: #1dd4f8;
 }
 
 body {
@@ -51,12 +52,30 @@ form {
     }
 .input {
     width: 90%;
+    margin:  0 auto;
+    padding: 15px;
+}
+.input:hover{
+    border:  solid 1px var(--light-color);
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="submit"]{
     height: 60px;
     background-color: var(--input-color);
-    border-radius: 12px;
-    margin:  0 auto;
     border:  solid 1px var(--input-color);
-    color: var(--light-color);
     font-size: 18px;
-    padding: 15px;
+    border-radius: 12px;
+    color: var(--light-color);
+}
+
+input[type="submit"]{
+    width: 90px;
+    float: left;
+    margin-left: 5%;
+}
+input[type="submit"]:hover {
+    background-color: var(--input-color-hover);
 }
