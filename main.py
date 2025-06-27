@@ -15,10 +15,11 @@ app = Flask(__name__, template_folder="src/templates", static_folder="src/static
 
 # Configure app
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"mysql+pymysql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 )
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 
 # File upload configuration
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB max size
@@ -48,6 +49,11 @@ from src.models.document import Document
 from src.models.exercise import Exercise
 from src.models.assignment import Assignment
 from src.models.submission import Submission
+from src.models.subject import Subject
+from src.models.period import Period
+from src.models.class_model import ClassModel
+from src.models.class_view import ClassView
+from src.models.resource import Resource
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
