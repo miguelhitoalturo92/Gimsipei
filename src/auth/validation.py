@@ -3,9 +3,9 @@ from enum import Enum
 
 
 class UserRole(str, Enum):
-    ADMIN = "ADMIN"
-    TEACHER = "TEACHER"
-    STUDENT = "STUDENT"
+    STUDENT = "student"
+    TEACHER = "teacher"
+    ADMIN = "admin"
 
 
 class LoginSchema(BaseModel):

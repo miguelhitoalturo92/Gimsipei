@@ -4,7 +4,7 @@ from .controllers import (
     get_current_user_controller,
     logout_user_controller,
     create_first_admin_controller,
-    forgot_password_controller,
+    # forgot_password_controller,
 )
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
@@ -20,9 +20,9 @@ def get_current_user():
     return get_current_user_controller(request)
 
 
-@auth_bp.route("/forgot-password", methods=["GET"])
-def forgot_password():
-    return forgot_password_controller(request)
+# @auth_bp.route("/forgot-password", methods=["GET"])
+# def forgot_password():
+#     return forgot_password_controller(request)
 
 
 @auth_bp.route("/logout", methods=["POST"])
