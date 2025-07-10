@@ -17,22 +17,33 @@
     --barra-calificaciones: #A270F2;
 }
 
+html {
+    background-color: #f6f6f6;
+}
+
 .containe {
-    width: 100vw;
+    width: 100%;
+    position: relative;
     height: 100vh;
+    background-color: #f6f6f6;
+}
+
+.mision-tp p,
+.vision-tp p {
+    font-size: 1.6rem;
 }
 
 .bg-mision {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-    height: 54vh;
-
+    padding: 140px 100px;
     background-color: var(--primario);
     background-image: url("../images/menu-principal/bg-pencil.png");
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+    bottom: -50px;
 }
 
 .logo {
@@ -46,48 +57,50 @@
 }
 
 .mision-tp {
-    width: 90%;
+    width: 50%;
     height: auto;
     color: #ffffff;
-    margin: auto;
+    margin: 0px;
 }
 
 .bg-vision {
     width: 100%;
-    height: 50vh;
-
     background-color: #f6f6f6;
     border-radius: 50px 50px 0px 0px;
-    margin-top: -2.3%;
     z-index: 1000;
+    padding: 40px 80px;
+    position: relative;
 }
 
 .vision-tp {
-    width: 90%;
+    width: 50%;
     color: var(--gris-claro);
+    padding: 20px;
 }
 
 .bg-lateral {
-    position: relative;
-    width: 20%;
-    height: 70%;
-
+    position: absolute;
     background-image: url("../images/menu-principal/bg-rigth.png");
     background-repeat: no-repeat;
-    background-size: cover;
-
-    float: right;
-    margin-top: -770px;
+    background-size: contain;
+    right: 0px;
+    top: 170px;
+    z-index: 9999;
+    width: 624px;
+    height: 160%;
 }
 
 .menu {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 5px;
     width: 100%;
+    background-color: #f6f6f6;
+    z-index: 99991;
+    position: relative;
+    gap: 20px;
 }
 
 .box-menu {
@@ -95,10 +108,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     width: 120px;
     height: 158px;
-
+    position: relative;
     border-radius: 15px;
     background-color: var(--azul-oscuro);
 }
@@ -107,20 +120,20 @@
     color: var(--blanco);
 }
 
+.box-menu svg {
+    fill: #fff;
+    width: 80px;
+}
+
 /* botones menu*/
 
 
-.barra-gimsipei,
-.barra-clases,
-.barra-recursos,
-.barra-evaluaciones,
-.barra-libros,
-.barra-calificaciones {
+.barra {
     position: absolute;
-    width: 129px;
+    width: 100%;
     height: 13px;
     border-radius: 5px;
-    bottom: 0px;
+    bottom: -25px;
 }
 
 .gimsipei {
@@ -197,80 +210,41 @@
 }
 
 
-@media (max-width: 576px) {
-    .mision-tp {
-        /* margin-top: 130px; */
-    }
+.bg_section_footer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+    top: 40px;
+    background-color: #f6f6f6;
+}
 
-    .logo {
-        height: 50px;
-        margin-left: 10px;
-        margin-top: 10px;
-    }
+.barra_bg {
+    height: 20px;
+    width: 50%;
+    position: absolute;
+}
 
-    .containe {
-        width: 100%;
-    }
+.barra_bg_left {
+    left: 0px;
+    top: 20%;
+    border-radius: 0px 10px 10px 0px;
+}
 
-    .html {
-        background-color: #f6f6f6;
-    }
+.barra_bg_right {
+    right: 0px;
+    bottom: 20%;
+    border-radius: 10px 0px 0px 10px;
+}
 
-    .bg-vision {
-        width: 96.6%;
-        background-color: #fff;
-        border-radius: 15px;
-    }
+.bg-blue {
+    background-color: #66c6e8;
+}
 
-    .img_logo_brand {
-        width: 100%;
-        height: 46px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-    }
-
-    .barra-gimsipei {
-        bottom: 0px;
-    }
-
-    .box-menu {
-        width: 100px;
-        height: 140px;
-        position: relative;
-        background-color: #fff;
-    }
-
-    .box-menu p {
-        font-size: 12px;
-        text-align: center;
-        color: var(--gris-claro);
-        margin-top: 5px;
-    }
-
-    .barra {
-        position: absolute;
-        width: 90%;
-        height: 7px;
-        border-radius: 5px;
-        bottom: 0px;
-    }
-
-    .bg-lateral {
-        display: none;
-    }
-
-    .mision-tp,
-    .vision-tp {
-        width: 90%;
-        text-align: justify;
-        margin: auto;
-        padding: 20px;
-    }
-
-    .bg-mision {
-        width: 97%;
-    }
+.bg-gray {
+    background-color: #e2e2e2;
 }
 
 * {
@@ -291,7 +265,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 999999;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -372,4 +346,109 @@
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+
+@media (max-width: 576px) {
+    .mision-tp {
+        width: 90%;
+        height: auto;
+        color: #ffffff;
+        margin: auto;
+    }
+
+    .vision-tp {
+        width: 90%;
+        color: var(--gris-claro);
+    }
+
+    .logo {
+        height: 50px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .containe {
+        width: 100%;
+    }
+
+    .html {
+        background-color: #f6f6f6;
+    }
+
+    .bg-vision {
+        width: 96.6%;
+        background-color: #f6f6f6;
+        border-radius: 15px;
+        padding: 40px 0px;
+    }
+
+    .box-menu svg {
+        fill: var(--gris-claro);
+        width: 80px;
+    }
+
+    .img_logo_brand {
+        width: 100%;
+        height: 46px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+
+    .barra-gimsipei {
+        bottom: 0px;
+    }
+
+    .box-menu {
+        width: 125px;
+        height: 140px;
+        position: relative;
+        background-color: #f6f6f6;
+    }
+
+    .box-menu p {
+        font-size: 12px;
+        text-align: center;
+        color: var(--gris-claro);
+        margin-top: 5px;
+    }
+    .mision-tp p, .vision-tp p {
+        font-size: 1rem;
+    }
+    .barra {
+        position: absolute;
+        width: 90%;
+        height: 7px;
+        border-radius: 5px;
+        bottom: 0px;
+    }
+
+    .bg-lateral {
+        display: none;
+    }
+
+    .mision-tp,
+    .vision-tp {
+        width: 90%;
+        text-align: justify;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .bg-mision {
+        width: 97%;
+        padding: 110px 0px 30px;
+        bottom: -10px;
+    }
+    .mision-tp p,
+    .vision-tp p{
+        text-align: left;
+    }
+
+    .barra_bg {
+        height: 20px;
+        width: 60%;
+        position: absolute;
+    }
 }
