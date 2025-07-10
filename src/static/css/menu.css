@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --blanco: #ffffff;
     --primario: #3BBAE4;
     --gris-claro: #606060;
@@ -15,13 +15,15 @@
     --barra-evaluaciones: #F48D53;
     --barra-libros: #EA6EF4;
     --barra-calificaciones: #A270F2;
-    }
+}
+
 .containe {
     width: 100vw;
     height: 100vh;
-    }
+}
+
 .bg-mision {
-    display: flex;    
+    display: flex;
     flex-direction: column;
 
     width: 100%;
@@ -31,8 +33,9 @@
     background-image: url("../images/menu-principal/bg-pencil.png");
     background-repeat: no-repeat;
     background-size: cover;
-    }
-.logo{
+}
+
+.logo {
     width: 300px;
     height: 60px;
 
@@ -42,15 +45,11 @@
     background-repeat: no-repeat;
 }
 
-.mision-tp{
-    position: absolute;
-    width: 400px;
+.mision-tp {
+    width: 90%;
     height: auto;
-
-    margin-left: 110px;
-    margin-top: 100px;
-
     color: #ffffff;
+    margin: auto;
 }
 
 .bg-vision {
@@ -61,16 +60,10 @@
     border-radius: 50px 50px 0px 0px;
     margin-top: -2.3%;
     z-index: 1000;
-    }
+}
 
 .vision-tp {
-    position: absolute;
-    width: 400px;
-    height: auto;
-
-    margin-left: 110px;
-    margin-top: 50px;
-
+    width: 90%;
     color: var(--gris-claro);
 }
 
@@ -86,27 +79,23 @@
     float: right;
     margin-top: -770px;
 }
+
 .menu {
-    position: absolute;
     display: flex;
-    justify-content: space-between ;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 30px;
-
-    width: 55%;
-    height: 90px;
-
-    margin-left: 35%;
-    margin-top: -200px;
+    gap: 5px;
+    width: 100%;
 }
-.box-menu{
+
+.box-menu {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap:  5px;
+    gap: 5px;
     width: 120px;
     height: 158px;
 
@@ -117,90 +106,68 @@
 .box-menu {
     color: var(--blanco);
 }
+
 /* botones menu*/
 
 
 .barra-gimsipei,
-.barra-clases , 
-.barra-recursos, 
-.barra-evaluaciones, 
-.barra-libros, 
-.barra-calificaciones
-{
+.barra-clases,
+.barra-recursos,
+.barra-evaluaciones,
+.barra-libros,
+.barra-calificaciones {
     position: absolute;
     width: 129px;
     height: 13px;
-
-    margin-top: 200px;
     border-radius: 5px;
+    bottom: 0px;
 }
 
 .gimsipei {
-    width: 68px;
-    height: 88px;
-
     background-image: url("../images/menu-principal/gimsipei.png");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 .gimsipei-hover:hover {
     background-color: var(--barra-ginsipei);
 }
 
-.clases
-{
-    width: 77px;
-    height: 77px;
-
-    background-image: url("../images/menu-principal/clases.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+.libros {
+    background-image: url("../images/menu-principal/libros.png");
 }
+
+.clases {
+    background-image: url("../images/menu-principal/clases.png");
+
+}
+
 .clases-hover:hover {
     background-color: var(--barra-clases);
 }
-.recursos {
-    width: 88px;
-    height: 88px;
 
+.recursos {
     background-image: url("../images/menu-principal/recursos.png");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 .recursos-hover:hover {
     background-color: var(--barra-recursos);
 }
-.evaluaciones{
-    width: 68px;
-    height: 88px;
 
+.evaluaciones {
     background-image: url("../images/menu-principal/Evaluaciones.png");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 .evaluaciones-hover:hover {
     background-color: var(--barra-evaluaciones);
 }
-.libros {
-    width: 110px;
-    height: 88px;
 
-    background-image: url("../images/menu-principal/libros.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-left: -10px;
-}
 .libros-hover:hover {
     background-color: var(--barra-libros);
 }
-.calificaciones {
-    width: 68px;
-    height: 88px;
 
+.calificaciones {
     background-image: url("../images/menu-principal/calificaciones.png");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 .calificaciones-hover:hover {
     background-color: var(--barra-calificaciones);
 }
@@ -208,49 +175,201 @@
 .barra-gimsipei {
     background-color: var(--barra-ginsipei);
 }
+
 .barra-clases {
     background-color: var(--barra-clases);
 }
+
 .barra-recursos {
     background-color: var(--barra-recursos);
 }
+
 .barra-evaluaciones {
     background-color: var(--barra-evaluaciones);
 }
+
 .barra-libros {
     background-color: var(--barra-libros);
 }
+
 .barra-calificaciones {
     background-color: var(--barra-calificaciones);
 }
 
 
-@media (max-width: 576px) {  
+@media (max-width: 576px) {
+    .mision-tp {
+        /* margin-top: 130px; */
+    }
+
+    .logo {
+        height: 50px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
     .containe {
         width: 100%;
     }
-    .html{
-    background-color: #f6f6f6;
+
+    .html {
+        background-color: #f6f6f6;
     }
-    .bg-vision{
-        width: 97%;
-        height: 90vh;
+
+    .bg-vision {
+        width: 96.6%;
+        background-color: #fff;
         border-radius: 15px;
     }
 
-    .menu {
-        margin-top: 60px;
+    .img_logo_brand {
+        width: 100%;
+        height: 46px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
+
+    .barra-gimsipei {
+        bottom: 0px;
+    }
+
+    .box-menu {
+        width: 100px;
+        height: 140px;
+        position: relative;
+        background-color: #fff;
+    }
+
+    .box-menu p {
+        font-size: 12px;
+        text-align: center;
+        color: var(--gris-claro);
+        margin-top: 5px;
+    }
+
+    .barra {
+        position: absolute;
+        width: 90%;
+        height: 7px;
+        border-radius: 5px;
+        bottom: 0px;
+    }
+
     .bg-lateral {
         display: none;
     }
-    .mision-tp,.vision-tp{
+
+    .mision-tp,
+    .vision-tp {
         width: 90%;
-        margin-left: 10px;
         text-align: justify;
+        margin: auto;
+        padding: 20px;
     }
+
     .bg-mision {
         width: 97%;
-        height: 80vh;
     }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #3bbae4;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* .logo {
+    height: 30px;
+}
+
+.logo img {
+    height: 100%;
+} */
+
+.user-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile img {
+    width: 100%;
+    height: auto;
+}
+
+.hamburger-menu {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Menú desplegable */
+.mobile-nav {
+    position: fixed;
+    top: 0px;
+    right: -250px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background-color: #3bbae4;
+    transition: right 0.3s ease;
+    padding: 20px 0;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+}
+
+.mobile-nav ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #34495e;
+}
+
+.mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
