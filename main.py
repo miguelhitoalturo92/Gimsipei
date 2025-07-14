@@ -1,11 +1,5 @@
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_cors import CORS
-from flask_jwt_extended import JWTManager
-from dotenv import load_dotenv
-from src.database.database import engine, Base
-import os
+from flask import Flask, render_template, redirect, url_for
+from flask_mysqldb import MySQL, MySQLdb
 
 # Load environment variables
 load_dotenv()
@@ -71,8 +65,23 @@ def health_check():
 
 
 
-# Initialize routes
-init_routes()
+# Rutas
+@app.route('/', methods=['GET','POST'])
+def index():
+    return redirect(url_for('login'))
+
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+     return render_template('auth/login.html')
+ 
+ 
+@app.route('/user', methods=['GET','POST'])
+def user():
+    return render_template('auth/user.html')
+
+
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5010))

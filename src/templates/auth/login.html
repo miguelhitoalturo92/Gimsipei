@@ -33,21 +33,20 @@
             <input type="text" name="username" id="" class="input">
         </div>
 
-        <div class="user mb-2">
-            <label for="label-for">Contraseña</label>
-            <input type="password" name="username" id="" class="input">
-        </div>
-        <div class="links">
-            <a href="{{ url_for('auth.forgot_password') }}">¿Olvidaste tu contraseña?</a>
-        </div>
-        <div class="mb-3 form-checked">
-                <input type="checkbox" class="gx-0 gy-0" id="remember" name="remember">
-                <label class="gx-0 gy-0 label" for="remember">Recordarme</label>
-            </div>
-            <div>
-                <button type="submit" class="btn boton">Iniciar</button>
-            </div>
-    </form>
-  </div>
-</div><!-- container-fluid bg-index -->
+   <section>
+    <div class="login">
+    <form action="{{ url_for('user') }}" method="POST">
+      <h2 class="iniciar-sesion">Iniciar Sesión</h2>
+      <input type="text" name="" id="">
+      <label>Contraseña</label>
+      <input type="password" name="" id="">
+      <p>olvidaste tu Contraseña</p>
+      <input type="submit" value="Iniciar">
+      <input type="checkbox" name="" id="">
+   </form>  
+    
+
+
+    </div><!--fin login  -->      
+  </section>
 {% endblock %}
