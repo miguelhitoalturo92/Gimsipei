@@ -6,7 +6,7 @@ from src.database.database import SessionLocal
 from typing import Dict, Any, Union
 from functools import wraps
 
-bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder='templates')
+bp = Blueprint('auth', __name__, url_prefix='/auth/', template_folder='templates')
 
 def login_required(f):
     @wraps(f)
@@ -18,6 +18,97 @@ def login_required(f):
             return redirect(url_for('auth.login'))
         return f(*args, **kwargs)
     return decorated_function
+
+
+
+
+
+
+@bp.route('/index', methods=['GET'])
+def index():
+    return render_template('login.html')
+
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login() -> Union[str, tuple[Dict[str, Any], int]]:
+
+    if request.method == 'GET':
+        return render_template('login.html')
+        
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
+        
+    db = SessionLocal()
+    try:
+        user = db.query(User).filter_by(username=data.get('username')).first() or \
+               db.query(User).filter_by(email=data.get('username')).first()
+    finally:
+        db.close()
+    
+    try:
+        if not user or not check_password_hash(user.hashed_password, data['password']):
+            message = 'Credenciales inválidas'
+            if request.is_json:
+                return {'error': message}, 401
+            flash(message, 'danger')
+            return redirect(url_for('index'))
+        
+        access_token = create_access_token(identity=user.id)
+        
+        if request.is_json:
+            return {
+                'access_token': access_token,
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                    'username': user.username,
+                    'role': user.role.name
+                }
+            }, 200
+            
+        response = make_response(redirect(url_for('admin.dashboard')))
+        set_access_cookies(response, access_token)
+        flash(f'Bienvenido, {user.username}!', 'success')
+        return response
+    finally:
+        db.close()
+
+
+
+
+@bp.route('user', methods=['GET', 'POST'])
+def user():
+    return render_template('admin/user.html') 
+
+
+@bp.route('/me', methods=['GET'])
+@jwt_required()
+def get_current_user() -> tuple[Dict[str, Any], int]:
+    """Get current user information
+    
+    Returns:
+        tuple[Dict[str, Any], int]: Response with user data and status code
+    """
+    user_id = get_jwt_identity()
+    db = SessionLocal()
+    try:
+        user = db.query(User).get(user_id)
+    finally:
+        db.close()
+    
+    if not user:
+        return {'error': 'User not found'}, 404
+        
+    return {
+        'id': user.id,
+        'email': user.email,
+        'username': user.username,
+        'role': user.role.name
+    }, 200
+
+
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register() -> Union[str, tuple[Dict[str, Any], int]]:
@@ -71,88 +162,6 @@ def register() -> Union[str, tuple[Dict[str, Any], int]]:
     flash(message, 'success')
     return redirect(url_for('auth.login'))
 
-
-
-
-@bp.route('login', methods=['GET', 'POST'])
-def login() -> Union[str, tuple[Dict[str, Any], int]]:
-    """Login user
-    
-    Returns:
-        Union[str, tuple[Dict[str, Any], int]]: Rendered template or API response
-    """
-    if request.method == 'GET':
-        return render_template('auth/login.html')
-        
-    if request.is_json:
-        data = request.get_json()
-    else:
-        data = request.form
-        
-    db = SessionLocal()
-    try:
-        user = db.query(User).filter_by(username=data.get('username')).first() or \
-               db.query(User).filter_by(email=data.get('username')).first()
-    finally:
-        db.close()
-    
-    try:
-        if not user or not check_password_hash(user.hashed_password, data['password']):
-            message = 'Credenciales inválidas'
-            if request.is_json:
-                return {'error': message}, 401
-            flash(message, 'danger')
-            return redirect(url_for('auth.login'))
-        
-        access_token = create_access_token(identity=user.id)
-        
-        if request.is_json:
-            return {
-                'access_token': access_token,
-                'user': {
-                    'id': user.id,
-                    'email': user.email,
-                    'username': user.username,
-                    'role': user.role.name
-                }
-            }, 200
-            
-        response = make_response(redirect(url_for('admin.dashboard')))
-        set_access_cookies(response, access_token)
-        flash(f'Bienvenido, {user.username}!', 'success')
-        return response
-    finally:
-        db.close()
-
-@bp.route('user', methods=['GET', 'POST'])
-def user():
-    return render_template('admin/user.html') 
-
-
-@bp.route('/me', methods=['GET'])
-@jwt_required()
-def get_current_user() -> tuple[Dict[str, Any], int]:
-    """Get current user information
-    
-    Returns:
-        tuple[Dict[str, Any], int]: Response with user data and status code
-    """
-    user_id = get_jwt_identity()
-    db = SessionLocal()
-    try:
-        user = db.query(User).get(user_id)
-    finally:
-        db.close()
-    
-    if not user:
-        return {'error': 'User not found'}, 404
-        
-    return {
-        'id': user.id,
-        'email': user.email,
-        'username': user.username,
-        'role': user.role.name
-    }, 200
 
 @bp.route('/forgot-password', methods=['GET'])
 def forgot_password() -> str:

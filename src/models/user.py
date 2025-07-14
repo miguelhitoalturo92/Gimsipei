@@ -25,7 +25,7 @@ class User(Base):
     is_active: bool = Column(Integer, default=1)
 
     # Relationships
-    documents = relationship("Document", back_populates="author")
-    exercises = relationship("Exercise", back_populates="author")
-    assignments = relationship("Assignment", back_populates="author")
-    submissions = relationship("Submission", back_populates="student")
+    documents = relationship("Document", back_populates="author", lazy="dynamic")
+    exercises = relationship("Exercise", back_populates="author", lazy="dynamic")
+    assignments = relationship("Assignment", back_populates="author", lazy="dynamic")
+    submissions = relationship("Submission", back_populates="student", lazy="dynamic")
