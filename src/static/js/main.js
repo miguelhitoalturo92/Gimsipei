@@ -41,11 +41,27 @@ function setupAutoCloseAlerts() {
 }
 
 // Inicializar todas las funciones cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     setupFormValidation();
     setupAutoCloseAlerts();
-    
+
     // Setup password toggles if they exist
     setupPasswordToggle('#password', '#togglePassword');
     setupPasswordToggle('#confirm_password', '#toggleConfirmPassword');
+});
+
+
+document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('mobileNav').classList.toggle('active');
+
+    // Animación para el menú hamburguesa (opcional)
+    this.classList.toggle('open');
+});
+
+let menu = document.querySelectorAll('.mobile-nav li a')
+menu.forEach(item => {
+    item.addEventListener('click', () => {
+        document.getElementById('mobileNav').classList.remove('active');
+        document.getElementById('hamburger').classList.remove('open');
+    });
 });
