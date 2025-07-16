@@ -75,24 +75,6 @@ def user() -> Union[str, tuple[Dict[str, Any], int]]:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.errorhandler(404)
 def not_found_error(error):
     return jsonify({"error": "Not found"}), 404

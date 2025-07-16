@@ -23,6 +23,29 @@ def login_user_controller(request: Request) -> Response | tuple[dict, int]:
         return jsonify({"error": str(e)}), 500
 
 
+def index_menu_controller(request: Request) -> Response:
+    return render_template("auth/user.html")
+
+def clases_controller(request: Request) -> Response:
+    return render_template("category/clases.html")
+
+def recursos_controller(request: Request) -> Response:
+    return render_template("category/recursos.html")
+
+def evaluaciones_controller(request: Request) -> Response:
+    return render_template("category/evaluaciones.html")
+
+def libros_controller(request: Request) -> Response:
+    return render_template("category/libros.html")
+
+
+
+
+
+
+
+
+
 @jwt_required()
 def get_current_user_controller(request: Request) -> Response | tuple[dict, int]:
     try:
@@ -33,6 +56,7 @@ def get_current_user_controller(request: Request) -> Response | tuple[dict, int]
 
 def forgot_password_controller(request: Request) -> Response:
     return render_template("auth/forgot_password.html")
+
 
 
 @jwt_required()

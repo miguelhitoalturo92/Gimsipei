@@ -74,22 +74,6 @@ def login() -> Union[str, tuple[Dict[str, Any], int]]:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @bp.route('/me', methods=['GET'])
 @jwt_required()
 def get_current_user() -> tuple[Dict[str, Any], int]:

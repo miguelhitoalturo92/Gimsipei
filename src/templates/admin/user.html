@@ -77,10 +77,11 @@
     <div class="menu">
         <div class="box-menu gimsipei-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="57.15mm" height="73.8378mm"
-                version="1.1"
-                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                viewBox="0 0 5715 7383.78" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+            version="1.1"
+            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+            viewBox="0 0 5715 7383.78" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+            <a href="">
                 <defs>
                 </defs>
                 <g id="Capa_x0020_1">
@@ -98,7 +99,10 @@
             <p>Gimsipei</p>
             <div class="barra barra-gimsipei"></div>
         </div>
+    </a> 
 
+    <!-- Inicio Clases-->
+    <a href="{{ url_for('auth.clases')}}">
         <div class="box-menu clases-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="64.77mm" height="64.9478mm"
                 version="1.1"
@@ -131,10 +135,16 @@
                     </g>
                 </g>
             </svg>
+        
 
             <p>Clases</p>
-            <div class="barra barra-clases"></div>
+            <div class="barra barra-clases"></div> 
         </div>
+        </a>
+        <!--  Fin clases-->
+
+         <!-- Inicio Recursos-->
+    <a href="{{ url_for('auth.recursos')}}">
         <div class="box-menu recursos-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="64.77mm" height="64.9478mm"
                 version="1.1"
@@ -171,10 +181,16 @@
                     </g>
                 </g>
             </svg>
+            
+           
 
             <p>Recursos</p>
             <div class="barra barra-recursos"></div>
         </div>
+        </a>
+
+         <!-- Inicio Evaluaciones -->
+    <a href="{{ url_for('auth.evaluaciones')}}">
         <div class="box-menu evaluaciones-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="58.42mm" height="72.5678mm"
                 version="1.1"
@@ -213,6 +229,11 @@
             <p>Evaluaciones</p>
             <div class="barra barra-evaluaciones"></div>
         </div>
+        </a>
+
+
+        <!-- Inicio Libros -->
+    <a href="{{ url_for('auth.libros')}}">
         <div class="box-menu libros-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="77.47mm" height="52.2478mm"
                 version="1.1"
@@ -249,6 +270,11 @@
             <p>Libros</p>
             <div class="barra barra-libros"></div>
         </div>
+        </a>
+
+
+        <!-- Inicio Evaluaciones -->
+    <a href="{{ url_for('auth.evaluaciones')}}">
         <div class="box-menu calificaciones-hover">
             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="54.61mm" height="68.7578mm"
                 version="1.1"
@@ -287,7 +313,9 @@
             <p>Calificaciones</p>
             <div class="barra barra-calificaciones"></div>
         </div>
+        </a>
     </div>
+
 
     <div class="bg-lateral"></div>
 
