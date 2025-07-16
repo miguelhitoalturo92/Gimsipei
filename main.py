@@ -1,8 +1,13 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, request,json, jsonify, current_app, render_template, redirect, url_for, flash, make_response
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import JWTManager, create_access_token
 from dotenv import load_dotenv
+from werkzeug.security import generate_password_hash, check_password_hash
+from src.models.user import User, UserRole
+from src.database.database import SessionLocal
+from typing import Dict, Any, Union
 import os
+from functools import wraps
 
 from src.routes import register_blueprints
 from src.database.database import engine, Base
@@ -58,9 +63,34 @@ def init_routes():
 
 
 # Error handlers
-@app.route('/')
-def leo():
+@app.route('/auth/login')
+def index():
     return render_template('auth/login.html')
+
+
+@app.route('/auth/user', methods=['GET','POST'])
+def user() -> Union[str, tuple[Dict[str, Any], int]]:
+
+    return render_template('admin/user.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.errorhandler(404)

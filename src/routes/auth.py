@@ -1,6 +1,7 @@
-from flask import Blueprint, request, jsonify, current_app, render_template, redirect, url_for, flash, make_response
+from flask import Blueprint, request,json, jsonify, current_app, render_template, redirect, url_for, flash, make_response
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 from src.models.user import User, UserRole
 from src.database.database import SessionLocal
 from typing import Dict, Any, Union
@@ -19,14 +20,6 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
-
-
-
-
-@bp.route('/index', methods=['GET'])
-def index():
-    return render_template('login.html')
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -78,9 +71,23 @@ def login() -> Union[str, tuple[Dict[str, Any], int]]:
 
 
 
-@bp.route('user', methods=['GET', 'POST'])
-def user():
-    return render_template('admin/user.html') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @bp.route('/me', methods=['GET'])
