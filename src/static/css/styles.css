@@ -3,3 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+.flex{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+.flex-row{
+    flex-direction: row;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
