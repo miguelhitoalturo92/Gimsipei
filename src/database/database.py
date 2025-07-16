@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.pool import QueuePool
 from os import getenv
 from dotenv import load_dotenv
+from typing import Generator, Any
 
 load_dotenv()
 

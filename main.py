@@ -12,6 +12,9 @@ from functools import wraps
 from src.routes import register_blueprints
 from src.database.database import engine, Base
 
+from src.routes import register_blueprints
+from src.database.database import engine, Base
+
 # Load environment variables
 load_dotenv()
 
@@ -53,6 +56,11 @@ from src.models.document import Document
 from src.models.exercise import Exercise
 from src.models.assignment import Assignment
 from src.models.submission import Submission
+from src.models.subject import Subject
+from src.models.period import Period
+from src.models.class_model import ClassModel
+from src.models.class_view import ClassView
+from src.models.resource import Resource
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
