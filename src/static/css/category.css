@@ -10,11 +10,11 @@
     --dark-color: #343a40;
     --border-color: #00c2e7;
     --gray-light: #f4f4f4;
-    --clases :#23ccc3;
-    --clases-active:#16b7ab;
+    --clases: #23ccc3;
+    --clases-active: #16b7ab;
     --recursos: #f7cb52;
     --recursos-active: #e5ab1a;
-    --evaluaciones:#f48d53;
+    --evaluaciones: #f48d53;
     --evaluaciones-active: #e55d1a;
     --libros: #ea6ef4;
     --libros-active: #d944ea;
@@ -26,8 +26,8 @@
     justify-content: space-between;
     padding: 3rem;
 }
- 
-h1{
+
+h1 {
     font-size: x-large;
     font-weight: bolder;
 }
@@ -35,9 +35,11 @@ h1{
 .data_categoty {
     gap: 1rem;
 }
+
 .clases_category .data_categoty svg {
     fill: var(--clases);
 }
+
 .recursos_category .data_categoty svg {
     fill: var(--recursos);
 }
@@ -53,19 +55,22 @@ h1{
 .calificaciones_category .data_categoty svg {
     fill: var(--calificaciones);
 }
-.data_categoty > .title{
+
+.data_categoty>.title {
     gap: 1rem;
     align-items: center;
 }
+
 .data_categoty p {
     font-size: larger;
 }
 
-.data_grade_category{
+.data_grade_category {
     gap: 0rem;
     color: var(--secondary-color);
 }
-.data_grade_category p{
+
+.data_grade_category p {
     margin: 0px;
 }
 
@@ -80,6 +85,7 @@ h1{
     max-height: 560px;
     overflow: auto;
 }
+
 .specialities_category::-webkit-scrollbar {
     width: 15px;
 }
@@ -95,6 +101,7 @@ h1{
     background: var(--clases);
     border-radius: 5px;
 }
+
 .recursos_category .specialities_category::-webkit-scrollbar-thumb {
     background: var(--recursos);
     border-radius: 5px;
@@ -119,6 +126,7 @@ h1{
 .specialities_category::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -142,12 +150,15 @@ h1{
 .clases_category .speciality {
     background-color: var(--clases);
 }
+
 .recursos_category .speciality {
     background-color: var(--recursos);
 }
+
 .libros_category .speciality {
     background-color: var(--libros);
 }
+
 .evaluaciones_category .speciality {
     background-color: var(--evaluaciones);
 }
@@ -180,7 +191,7 @@ hr.clases_br {
 /* aside menu */
 
 .menu_aside {
-    height: 100%;
+    height: 100vh;
     gap: 15px;
     border-radius: 10px;
     overflow: hidden;
@@ -190,12 +201,15 @@ hr.clases_br {
 .recursos_category .menu_aside {
     background-color: var(--recursos);
 }
+
 .libros_category .menu_aside {
     background-color: var(--libros);
 }
+
 .evaluaciones_category .menu_aside {
     background-color: var(--evaluaciones);
 }
+
 .calificaciones_category .menu_aside {
     background-color: var(--calificaciones);
 }
@@ -229,10 +243,12 @@ hr.clases_br {
 .clases_category .aside_list li a:hover {
     background-color: var(--clases-active);
 }
+
 .recursos_category .aside_list li a.active,
 .recursos_category .aside_list li a:hover {
     background-color: var(--recursos-active);
 }
+
 .libros_category .aside_list li a.active,
 .libros_category .aside_list li a:hover {
     background-color: var(--libros-active);
@@ -251,4 +267,152 @@ hr.clases_br {
 .aside_list li a.active svg,
 .aside_list li a:hover svg {
     fill: var(--light-color);
+}
+
+/* estilos categoria */
+.exams{
+    gap: 1rem;
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+.exam {
+    width: 100%;
+}
+.exam_content {
+    background: #ffff;
+    gap: 1rem;
+    height: max-content;
+    padding: 0px;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    width: 80%;
+    height: 100%;
+}
+
+.evaluaciones_bg {
+    background-color: var(--evaluaciones);
+}
+
+.img_evaluaciones {
+    width: 100px;
+    height: 100%;
+    width: 20%;
+}
+.text-content{
+    gap: 1rem;
+    padding: 1rem;
+    width:90%;
+    position: relative;
+}
+.text-content::before {
+       content: "";
+    width: 4px;
+    height: 80%;
+    background-color:var(--gray-light);
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+    display: block;
+    position: absolute;
+    left: 0px;
+}
+.text-content h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--evaluaciones);
+}
+.text-content p {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+}
+.nota{
+    width: 15%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+.nota span {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    border-radius: 15px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 40%;
+}
+.nota hr{
+    width: 90%;
+    height: 4px;
+    border-radius: 10px;
+    border: none;
+    opacity: 1;
+    background-color: var(--evaluaciones);
+    margin: 0px auto;
+}
+.btn.active{
+    background-color: var(--evaluaciones-active);
+    color: var(--light-color);
+}
+
+/* estilos libros */
+.books{
+    /* gap: 1rem; */
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background-color: var(--light-color);
+    position: relative;
+}
+.books::before{
+    content: "";
+    width: 9px;
+    height: 90%;
+    background-color: #fdebff;
+    border-radius: 15px;
+    margin-bottom: 0.5rem; 
+    position: absolute;
+    left: 0px;
+    top: 0%;
+    bottom: 0%;
+    margin: auto;
+}
+.book{
+    max-width: 20%;
+    flex-wrap: nowrap;
+    gap: 0px;
+    background-color: var(--light-color);
+    text-align: center;
+    border: 11px solid #fdebff;
+    border-radius: 15px;
+    padding: 7px;
+}
+
+.book img {
+    width: 100%;
+    height: 100%;
+    background-color: var(--libros);
+}
+.book .title_speciality{
+    padding: 0px;
+    gap: 2px;
+    font-size: small;
+}
+hr.libros_br {
+    background-color: var(--libros);
+    height: 5px;
+    width: 90%;
+    margin: 0px auto;
+}
+.btn-libros{
+    color: var(--libros);
+    border-color: var(--libros);
+}
+.btn-libros:hover,
+.btn-libros.active {
+    background-color: var(--libros);
+    color: var(--light-color);
+    border-color: var(--light-color);
 }

@@ -52,48 +52,86 @@
         <p>Fabian Forero Forero</p>
         <div class="data_grade_category flex flex-column">
             <p>1000457520</p>
-            
+
             <p>Grado 10</p>
+        </div>
+        <div class="filter flex flex-column">
+            <select name="alfabetico" id="alfabetico">
+                <option value="">- Alfabético -</option>
+            </select>
+              <select name="genero" id="genero">
+                <option value="">- Género -</option>
+            </select>
+              <select name="Curso" id="Curso">
+                <option value="">- Curso -</option>
+            </select>
+              <select name="Clases" id="Clases">
+                <option value="">- Clases -</option>
+            </select>
+            <button class="btn btn-libros">Remover filtro</button>
         </div>
 
     </div>
     <!-- fin Perfil -->
 
     <!-- Inicio Clases -->
-    <div class="specialities_category flex">
-        <div class="speciality flex">
-
+    <div class="specialities_category flex books">
+        <div class="book flex flex-column">
+            <img width="100%" height="100%"
+                src="https://st2.depositphotos.com/1007566/9620/v/950/depositphotos_96203074-stock-illustration-natural-resources-design.jpg"
+                alt="">
             <div class="title_speciality flex flex-column">
-                <hr class="clases_br"/>
-                ESPAÑOL
+                Cien años de soledad
+                <hr class="libros_br" />
+                ePub
             </div>
         </div>
-        <div class="speciality flex">
-
+        <div class="book flex flex-column">
+            <img width="100%" height="100%"
+                src="https://st2.depositphotos.com/1007566/9620/v/950/depositphotos_96203074-stock-illustration-natural-resources-design.jpg"
+                alt="">
             <div class="title_speciality flex flex-column">
-                <hr class="clases_br"/>
-                MATEMÁTICAS
+                Cien años de soledad
+                <hr class="libros_br" />
+                ePub
             </div>
         </div>
-        <div class="speciality flex">
-
+        <div class="book flex flex-column">
+            <img width="100%" height="100%"
+                src="https://st2.depositphotos.com/1007566/9620/v/950/depositphotos_96203074-stock-illustration-natural-resources-design.jpg"
+                alt="">
             <div class="title_speciality flex flex-column">
-                <hr class="clases_br"/>
-                GEOMETRIA
+                Cien años de soledad
+                <hr class="libros_br" />
+                ePub
             </div>
         </div>
-        <div class="speciality flex">
-
+           <div class="book flex flex-column">
+            <img width="100%" height="100%"
+                src="https://st2.depositphotos.com/1007566/9620/v/950/depositphotos_96203074-stock-illustration-natural-resources-design.jpg"
+                alt="">
             <div class="title_speciality flex flex-column">
-                <hr class="clases_br"/>
-                SOCIALES
+                Cien años de soledad
+                <hr class="libros_br" />
+                ePub
             </div>
         </div>
+           <div class="book flex flex-column">
+            <img width="100%" height="100%"
+                src="https://st2.depositphotos.com/1007566/9620/v/950/depositphotos_96203074-stock-illustration-natural-resources-design.jpg"
+                alt="">
+            <div class="title_speciality flex flex-column">
+                Cien años de soledad
+                <hr class="libros_br" />
+                ePub
+            </div>
+        </div>
+
     </div>
     <!-- Fin clases -->
 
     <!-- Menu lateral -->
-    <aside class="menu_aside flex" >
+    <aside class="menu_aside flex">
         <ul class="aside_list flex flex-column">
             <li>
                 <a href="">
@@ -131,7 +169,7 @@
                 </a>
             </li>
             <li>
-                <a class="active" href="">
+                <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="64.77mm" height="64.9478mm"
                         version="1.1"
                         style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
@@ -242,7 +280,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a class="active" href="">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="77.47mm" height="52.2478mm"
                         version="1.1"
                         style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
@@ -317,7 +355,7 @@
         </ul>
     </aside>
     <!-- Menu lateral -->
-     
+
 </div><!-- Fin Container -->
 
 {% endblock %}
