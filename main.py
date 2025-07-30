@@ -78,7 +78,6 @@ def index():
 
 @app.route('/auth/user', methods=['GET','POST'])
 def user() -> Union[str, tuple[Dict[str, Any], int]]:
-
     return render_template('admin/user.html')
 
 

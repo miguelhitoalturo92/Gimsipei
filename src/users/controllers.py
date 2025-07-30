@@ -18,7 +18,7 @@ from src.utils.decorator_role_required import role_required
 
 
 @jwt_required()
-@role_required(UserRole.ADMIN, UserRole.TEACHER, UserRole.STUDENT)
+@role_required([UserRole.ADMIN, UserRole.TEACHER, UserRole.STUDENT])
 def get_users_controller(request: Request) -> Response | Tuple[list, int]:
     try:
         role = request.args.get("role")
@@ -109,7 +109,7 @@ def create_user_controller(
 
 
 @jwt_required()
-@role_required(UserRole.ADMIN, UserRole.TEACHER)
+@role_required([UserRole.ADMIN, UserRole.TEACHER])
 @normalize_role_field
 def update_user_controller(
     user_id: int, request: Request
