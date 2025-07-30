@@ -63,6 +63,7 @@ def init_routes():
 
 
 # Error handlers
+@app.route('/')
 @app.route('/auth/login')
 def index():
     return render_template('auth/login.html')
