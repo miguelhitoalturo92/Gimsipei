@@ -66,7 +66,13 @@ def init_routes():
 @app.route('/')
 @app.route('/auth/login')
 def index():
-    return redirect('/user', 302)
+    return render_template('auth/login.html')
+
+
+@app.route('/auth/user', methods=['GET','POST'])
+def user() -> Union[str, tuple[Dict[str, Any], int]]:
+
+    return render_template('admin/user.html')
 
 
 
