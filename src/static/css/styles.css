@@ -22,7 +22,7 @@ ul{
     width: 100%;
 }
 .btn {
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 15px;
     color: var(--secondary-color);
     text-decoration: none;
