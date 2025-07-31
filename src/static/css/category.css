@@ -25,6 +25,7 @@
 .container_category {
     justify-content: space-between;
     padding: 3rem 3rem 0rem;
+    height: 100vh;
 }
 
 h1 {
@@ -82,7 +83,7 @@ h1 {
     background-color: var(--gray-light);
     border-radius: 10px;
     width: 70%;
-    max-height: 560px;
+    max-height: 90vh;
     overflow: auto;
 }
 
@@ -140,7 +141,7 @@ h1 {
 .speciality {
     width: 45%;
     align-items: end;
-    height: 230px;
+    height: 40%;
     justify-content: center;
     text-align: center;
     border-radius: 10px;
@@ -191,7 +192,7 @@ hr.clases_br {
 /* aside menu */
 
 .menu_aside {
-    height: 100vh;
+    height: 100%;
     gap: 15px;
     border-radius: 10px 10px 0px 0px;
     overflow: hidden;
